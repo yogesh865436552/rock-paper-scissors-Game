@@ -7,8 +7,7 @@ st.write("Choose your move!")
 choices = ["Rock", "Paper", "Scissors"]
 wins = {"Rock": "Scissors", "Paper": "Rock", "Scissors": "Paper"}
 
-# session_state keeps score between button clicks
-# took me a bit to figure this out - normal variables reset every click
+
 if "player_score" not in st.session_state:
     st.session_state.player_score = 0
 if "computer_score" not in st.session_state:
@@ -46,4 +45,10 @@ if player_choice:
 st.markdown("---")
 st.metric("Your Score", st.session_state.player_score)
 st.metric("Computer Score", st.session_state.computer_score)
+
+#reset button so you can start fresh without refreshing the page
+if st.button("🔄 Reset Scores"):
+    st.session_state.player_score = 0
+    st.session_state.computer_score = 0
+    st.rerun()
 
