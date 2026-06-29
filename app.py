@@ -3,7 +3,7 @@ import random
 
 st.set_page_config(
     page_title="Rock Paper Scissors",
-    page_icon="🎮"
+    page_icon="🎮",
     layout="centered"
 )
 
@@ -11,9 +11,11 @@ st.title("🎮 Rock Paper Scissors")
 st.write("Choose your move!")
 
 choices = ["Rock", "Paper", "Scissors"]
+
+#cleaner than writing out every combination in if elif
 wins = {"Rock": "Scissors", "Paper": "Rock", "Scissors": "Paper"}
 
-
+# session_state keeps score between clicks - resets on full page refresh
 if "player_score" not in st.session_state:
     st.session_state.player_score = 0
 if "computer_score" not in st.session_state:
@@ -23,13 +25,13 @@ col1, col2, col3 = st.columns(3)
 player_choice = None
 
 with col1:
-    if st.button("🪨 Rock"):
+    if st.button("🪨 Rock", use_container_width=True):
         player_choice = "Rock"
 with col2:
-    if st.button("📄 Paper"):
+    if st.button("📄 Paper", use_container_width=True):
         player_choice = "Paper"
 with col3:
-    if st.button("✂️ Scissors"):
+    if st.button("✂️ Scissors", use_container_width=True):
         player_choice = "Scissors"
 
 if player_choice:
@@ -49,12 +51,18 @@ if player_choice:
     st.write(f"Computer choice: {computer_choice}")
 
 st.markdown("---")
-st.metric("Your Score", st.session_state.player_score)
-st.metric("Computer Score", st.session_state.computer_score)
 
-#reset button so you can start fresh without refreshing the page
+# two columns for scores look cleaner than stacking them
+score_col1, score_col2 = st.columns(2)
+with score_col1:
+    st.metric("Your Score", st.session_state.player_score)
+with score_col2:
+    st.metric("Computer Score", st.session_state.computer_score)
+
 if st.button("🔄 Reset Scores"):
     st.session_state.player_score = 0
     st.session_state.computer_score = 0
     st.rerun()
 
+st.markdown("---")
+st.write("Made with by Yogesh Madhukumar 🚀")
