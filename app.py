@@ -77,6 +77,10 @@ with score_col1:
 with score_col2:
     st.metric("Computer Score", st.session_state.computer_score)
 
+total = st.session_state.player_score + st.session_state.computer_score
+if total > 0:
+    win_pct = round((st.session_state.player_score / total) * 100)
+    st.markdown(f"**Your win rate: {win_pct}%**")
 
 if st.button("🔄 Reset Scores"):
     st.session_state.player_score = 0
