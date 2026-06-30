@@ -57,7 +57,12 @@ if player_choice:
         "Computer": computer_choice,
         "Result": result
     })
-
+ 
+    if "Win" in result:
+        st.balloons()
+    st.markdown(f"""
+ <h2 style="text-align: center; font-size:36px">{result}</h2>
+ """,unsafe_allow_html=True)
     
     st.write(f"Your choice: {player_choice}")
     st.write(f"Computer choice: {computer_choice}")
