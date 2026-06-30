@@ -58,12 +58,6 @@ if player_choice:
         "Result": result
     })
 
-    #big centered result display with ballons on win
-    if "win" in result:
-        st.ballons()
-    st.markdown(f"""
-                <h2 style="text-align:center: font-size:36px">{result}</h2>
-                """, unsafe_allow_html=True)
     
     st.write(f"Your choice: {player_choice}")
     st.write(f"Computer choice: {computer_choice}")
